@@ -1,0 +1,137 @@
+<nav
+  class="navbar navbar-expand-lg navbar-light bg-success bg-gradient fixed-top shadow"
+>
+  <div class="container-fluid">
+    <a class="navbar-brand fs-3 text-white" href="">
+      <img
+        src="logo.png"
+        alt="Logo Yayasan Darul Qur'an"
+        class="d-inline-block align-text-top"
+        style="max-width: 45px; height: auto"
+      />
+      Yayasan Pesantren Darul Qur'an
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="index">Beranda</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="aboutDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Tentang Kami
+          </a>
+          <ul class="dropdown-menu bg-success border-0 shadow">
+            <li>
+              <a class="dropdown-item" href="tentang-yayasan"
+                >Tentang Yayasan</a
+              >
+            </li>
+            <li><a class="dropdown-item" href="sejarah">Sejarah</a></li>
+            <li>
+              <a class="dropdown-item" href="pendiri">Pendiri Yayasan</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="visi-dan-misi">Visi & Misi</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="artikel">Artikel</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="pendaftaran">Pendaftaran</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="kegiatan">Kegiatan</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="galleryDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Galeri
+          </a>
+          <ul class="dropdown-menu bg-success border-0 shadow">
+            <li>
+              <a class="dropdown-item" href="galeri-pondok">Pondok Pesantren</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="galeri-mi">Madrasah Ibtidaiyah</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="galeri-mts">Madrasah Tsanawiyah</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="galeri-ma">Madrasah Aliyah</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="berita-pondok">Berita</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="contact">Kontak</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<style>
+  .navbar-nav .nav-link {
+    color: white;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+
+  .navbar-nav .nav-link:hover {
+    color: #ffd700; /* Warna emas saat hover */
+    transform: scale(1.05); /* Efek zoom */
+  }
+
+  .dropdown-menu {
+    border-radius: 0.5rem;
+    opacity: 0; /* Menyembunyikan dropdown */
+    transform: translateY(-10px); /* Menggeser dropdown */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Transisi */
+    pointer-events: none; /* Menyembunyikan interaksi saat tidak terlihat */
+  }
+
+  .dropdown-menu.show {
+    opacity: 1; /* Menampilkan dropdown */
+    transform: translateY(0); /* Kembali ke posisi asli */
+    pointer-events: auto; /* Mengizinkan interaksi */
+  }
+
+  .dropdown-item {
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Background saat hover */
+    color: #ffd700; /* Warna teks saat hover */
+  }
+</style>
+
+<br /><br />
