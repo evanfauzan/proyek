@@ -40,7 +40,7 @@
       <div class="row">
         <?php
           require "koneksi.php";
-          $query = "SELECT * FROM db_gambar;";
+          $query = "SELECT * FROM db_gambar ORDER BY id DESC;";
           $sql = mysqli_query($konek, $query);
 
           // Jika query berhasil
@@ -49,7 +49,7 @@
         ?>
               <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-duration="400">
                   <div class="card border-0">
-                      <img src="images/<?php echo $result['foto']; ?>" alt="Kegiatan <?php echo $i; ?>" class="gallery-item img-fluid" onclick="openPopup('images/<?php echo $result['foto']; ?>')" />
+                      <img src="images/<?php echo $result['foto']; ?>" alt="Kegiatan <?php echo $result['id']; ?>" class="gallery-item img-fluid" onclick="openPopup('images/<?php echo $result['foto']; ?>')" />
                   </div>
               </div>
         <?php

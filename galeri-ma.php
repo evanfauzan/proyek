@@ -46,7 +46,7 @@
       <div class="row">
         <?php
           require "koneksi.php";
-          $query = "SELECT * FROM db_gambar_ma;";
+          $query = "SELECT * FROM db_gambar_ma ORDER BY id DESC;";
           $sql = mysqli_query($konek, $query);
 
           // Jika query berhasil

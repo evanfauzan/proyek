@@ -53,7 +53,7 @@
       >
           <?php
           require "koneksi.php";
-          $query = "SELECT * FROM db_berita;";
+          $query = "SELECT * FROM db_berita ORDER BY id DESC;";
           $sql = mysqli_query($konek, $query);
 
           // Jika query berhasil
@@ -77,7 +77,7 @@
                 </h3>
                 <p class="text-muted">Tanggal: <?php echo $result['tanggal']; ?></p>
                 <p class="card-text">
-                  <?php echo $result['teks']; ?>
+                  <?php echo nl2br($result['teks']); ?>
                 </p>
               </div>
             </div>

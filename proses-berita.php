@@ -37,4 +37,33 @@ if(isset($_POST['submit'])){
         echo "Terjadi kesalahan saat menyiapkan query.";
     }
 }
+// Proses menghapus gambar dari database
+if (isset($_GET['hapus'])) {
+    $id = $_GET['hapus'];
+    // Ambil nama file gambar berdasarkan id
+    $query = "SELECT foto FROM db_berita WHERE id = '$id'";
+    $result = mysqli_query($konek, $query);
+    $row = mysqli_fetch_assoc($result);
+
+    // Jika file ditemukan, hapus file tersebut
+    if ($row) {
+        $fileToDelete = $dir . $row['foto'];
+        // Hapus gambar dari server
+        if (file_exists($fileToDelete)) {
+            unlink($fileToDelete);
+        }
+
+        // Hapus data gambar dari database
+        $query = "DELETE FROM db_berita WHERE id = '$id';";
+        $sql = mysqli_query($konek, $query);
+        
+        if ($sql) {
+            header("Location: tambah-berita.php"); // Redirect setelah berhasil dihapus
+        } else {
+            echo "Gagal menghapus Data dari database.";
+        }
+    } else {
+        echo "Data tidak ditemukan.";
+    }
+}
 ?>
