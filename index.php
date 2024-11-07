@@ -245,85 +245,97 @@
     </div>
 
     <!-- Berita Section -->
-    <div class="container-fluid shadow rounded my-5 bg-light bg-gradient">
+    <div class="container shadow rounded my-5 bg-light bg-gradient p-4">
       <h2 class="text-center mb-4 p-3" data-aos="fade-up">Berita Terbaru</h2>
-      <div class="row overflow-auto">
-        <div class="d-flex flex-nowrap" style="overflow-x: auto; gap: 15px">
-          <div
-            class="col-md-4 col-12 flex-shrink-0 mb-4"
-            data-aos="fade-up"
-            data-aos-delay="200"
-          >
-            <div class="card hover-effect fade-in">
-              <img
-                src="berita/pengurus.jpg"
-                class="card-img-top"
-                alt="Pelantikan Pengurus"
-              />
-              <div class="card-body">
-                <h3 class="card-title">
-                  Pelantikan Pengurus Yayasan Darul Qur'an
-                </h3>
-                <p class="text-muted">Tanggal: 25 September 2024</p>
-                <p class="card-text">
-                  Pada tanggal 25 September 2024, Yayasan Pesantren Darul Qur'an
-                  mengadakan pelantikan pengurus baru.
-                </p>
-              </div>
-            </div>
-          </div>
+      <div id="beritaCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-pause="hover" data-bs-interval="2000">
+        <div class="carousel-inner">
+          <?php
+          require "koneksi.php";
+          $query = "SELECT * FROM db_berita ORDER BY id DESC;";
+          $sql = mysqli_query($konek, $query);
 
-          <div
-            class="col-md-4 col-12 flex-shrink-0 mb-4"
-            data-aos="fade-up"
-            data-aos-delay="300"
-          >
-            <div class="card hover-effect fade-in">
-              <img
-                src="berita/mtq.jpg"
-                class="card-img-top"
-                alt="Kegiatan MTQ"
-              />
-              <div class="card-body">
-                <h3 class="card-title">
-                  Keterlibatan dalam Lomba MTQ Tingkat Kabupaten Ogan Komering
-                  Ilir
-                </h3>
-                <p class="text-muted">Tanggal: 26 Februari 2024</p>
-                <p class="card-text">
-                  Yayasan Pesantren Darul Qur'an berpartisipasi dalam lomba MTQ
-                  Tingkat Ogan Komering Ilir.
-                </p>
+          // Jika query berhasil
+          if (mysqli_num_rows($sql) > 0) {
+            $first = true; // Flag untuk elemen pertama
+            while($result = mysqli_fetch_assoc($sql)) {
+          ?>
+          <div class="carousel-item <?php echo $first ? 'active' : ''; ?>" data-aos="fade-up">
+            <div class="card hover-effect" style="height: 100%; display: flex; flex-direction: column;">
+              <img src="g-berita/<?php echo $result['foto']; ?>" class="card-img-top" alt="<?php echo $result['judul']; ?>" style="object-fit: cover; height: 200px;" />
+              <div class="card-body" style="flex: 1;">
+                <h3 class="card-title"><?php echo $result['judul']; ?></h3>
+                <p class="text-muted">Tanggal: <?php echo $result['tanggal']; ?></p>
+                <p class="card-text" style="flex: 1;"><?php echo nl2br($result['teks']); ?></p>
               </div>
             </div>
           </div>
-
-          <div
-            class="col-md-4 col-12 flex-shrink-0 mb-4"
-            data-aos="fade-up"
-            data-aos-delay="400"
-          >
-            <div class="card hover-effect fade-in">
-              <img
-                src="berita/ziarah.jpg"
-                class="card-img-top"
-                alt="Kegiatan Ziarah"
-              />
-              <div class="card-body">
-                <h3 class="card-title">Kegiatan Ziarah Tahun 2023</h3>
-                <p class="text-muted">Tanggal: 29 Oktober 2023</p>
-                <p class="card-text">
-                  Yayasan Pesantren Darul Qur'an mengadakan kegiatan ziarah pada
-                  tanggal 29 Oktober 2023.
-                </p>
-              </div>
-            </div>
-          </div>
+          <?php
+              $first = false;
+            }
+          } else {
+            echo "<p>Data gambar tidak tersedia.</p>";
+          }
+          ?>
         </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#beritaCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#beritaCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
       </div>
     </div>
-    
-    
+    <style>
+      /* Gaya untuk setiap card */
+      .carousel-item .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .carousel-item .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .carousel-item img {
+        object-fit: cover;
+        height: 200px; /* Atur sesuai kebutuhan */
+      }
+
+      .card-body {
+        padding: 15px;
+      }
+
+      .card-title {
+        font-size: 1.25rem;
+        font-weight: bold;
+      }
+
+      .card-text {
+        font-size: 0.9rem;
+      }
+
+      .carousel-control-prev-icon,
+      .carousel-control-next-icon {
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+
+    </style>
+    <script>
+      // Jika ingin menambahkan fungsi khusus, berikut adalah contoh script tambahan
+      document.getElementById('beritaCarousel').addEventListener('mouseenter', function() {
+        var carousel = new bootstrap.Carousel(document.getElementById('beritaCarousel'));
+        carousel.pause();
+      });
+
+      document.getElementById('beritaCarousel').addEventListener('mouseleave', function() {
+        var carousel = new bootstrap.Carousel(document.getElementById('beritaCarousel'));
+        carousel.cycle();
+      });
+
+    </script>
+
     <?php include "layout/footer.html"; ?>
 </body>
 </html>

@@ -40,37 +40,62 @@
             Keunggulan Pondok
         </h2>
         <ul class="list-group">
-            <li class="list-group-item">
+            <!-- Fade Up (untuk item pertama) -->
+            <li class="list-group-item" data-aos="fade-up">
                 <i class="bi bi-check-circle-fill text-success"></i> Program pendidikan komprehensif: Integrasi Al-Quran, fiqh, akidah, dan ilmu umum.
             </li>
-            <li class="list-group-item">
+
+            <!-- Fade Left (untuk item kedua) -->
+            <li class="list-group-item" data-aos="fade-left">
                 <i class="bi bi-check-circle-fill text-success"></i> Fasilitas memadai: Ruang kelas dan tempat ibadah kondusif.
             </li>
-            <li class="list-group-item">
+
+            <!-- Fade Right (untuk item ketiga) -->
+            <li class="list-group-item" data-aos="fade-right">
                 <i class="bi bi-check-circle-fill text-success"></i> Pengajar berpengalaman: Komitmen pada pengembangan santri.
             </li>
-            <li class="list-group-item">
+
+            <!-- Fade Left (untuk item keempat) -->
+            <li class="list-group-item" data-aos="fade-left">
                 <i class="bi bi-check-circle-fill text-success"></i> Kegiatan ekstrakurikuler: Olahraga, seni, dan sosial.
             </li>
-            <li class="list-group-item">
+
+            <!-- Fade Right (untuk item kelima) -->
+            <li class="list-group-item" data-aos="fade-right">
                 <i class="bi bi-check-circle-fill text-success"></i> LAB Komputer: Akses sumber belajar tambahan.
             </li>
-            <li class="list-group-item">
+
+            <!-- Fade Left (untuk item keenam) -->
+            <li class="list-group-item" data-aos="fade-left">
                 <i class="bi bi-check-circle-fill text-success"></i> Pengembangan diri: Pelatihan kepemimpinan.
             </li>
-            <li class="list-group-item">
+
+            <!-- Fade Right (untuk item ketujuh) -->
+            <li class="list-group-item" data-aos="fade-right">
                 <i class="bi bi-check-circle-fill text-success"></i> Kemitraan lembaga: Meningkatkan kualitas pendidikan.
             </li>
-            <li class="list-group-item">
+
+            <!-- Fade Left (untuk item kedelapan) -->
+            <li class="list-group-item" data-aos="fade-left">
                 <i class="bi bi-check-circle-fill text-success"></i> Lingkungan mendukung: Nilai keagamaan dan sosial.
             </li>
-            <li class="list-group-item">
+
+            <!-- Fade Right (untuk item kesembilan) -->
+            <li class="list-group-item" data-aos="fade-right">
                 <i class="bi bi-check-circle-fill text-success"></i> Kegiatan masyarakat: Memperluas wawasan santri.
             </li>
-            <li class="list-group-item">
+
+            <!-- Fade Left (untuk item kesepuluh) -->
+            <li class="list-group-item" data-aos="fade-left" >
                 <i class="bi bi-check-circle-fill text-success"></i> Komunikasi baik: Antara pengajar, santri, dan orang tua.
             </li>
+
+            <!-- Fade Right (untuk kerjasama dengan Gontor) -->
+            <li class="list-group-item" data-aos="fade-right">
+                <i class="bi bi-check-circle-fill text-success"></i> Kerjasama dengan Gontor: Pengajaran yang berkualitas dan pengembangan santri di lingkungan yang profesional.
+            </li>
         </ul>
+
     </div>
     <br />
     

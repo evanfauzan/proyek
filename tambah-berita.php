@@ -8,6 +8,18 @@
       header("Location: login.php");
       exit();
   }
+   // Ambil nama pengguna dari session
+  $nama_pengguna = $_SESSION['username'];
+
+  // Query untuk mengambil nama dari tabel tb_user berdasarkan username
+  $query_nama = "SELECT nama FROM tb_user WHERE username = '$nama_pengguna'";
+  $result_nama = mysqli_query($konek, $query_nama);
+
+  // Cek apakah query berhasil dan ada data yang dihasilkan
+  if (mysqli_num_rows($result_nama) > 0) {
+      $row_nama = mysqli_fetch_assoc($result_nama);
+      $nama_pengguna = $row_nama['nama']; // Simpan nama pengguna ke dalam variabel
+  }
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -70,18 +82,14 @@
             color: #ffdd57 !important;
         }
     </style>
-    <title>Yayasan Darul Qur'an</title>
+    <title>Tambah Berita</title>
 </head>
 
 <body>
     <?php include "layout/navbar2.html"; ?>
 
     <div class="container py-5">
-        <h2 class="text-center mb-4">Selamat datang, <?php echo $_SESSION['username']; ?>!</h2>
-        <p class="text-center mb-4">Ini adalah halaman kelola yang hanya dapat diakses setelah login.</p>
-        <div class="text-center mb-4">
-            <a href="logout.php" class="btn btn-danger">Logout</a>
-        </div>
+        <?php include 'layout/halo.html';?>
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-10">
                 <h3 class="text-center mb-4">Form Input Berita</h3>
@@ -109,9 +117,6 @@
                         <textarea class="form-control" id="teks" name="teks" placeholder="Masukkan Teks" style="height: 150px;" required onkeyup="hitungHuruf()"></textarea>
                         <label for="teks">Teks Berita</label>
                         <p id="hitung-huruf">Huruf: 0/500</p>
-                        <div class="bg-info bg-gradient p-2 shadow rounded">
-                            <p>Perhatian: Anda tidak dapat melakukan tombol enter untuk membuat garis baru. Gunakan simbol &lt;br&gt; untuk melakukan baris baru.</p>
-                        </div>
                     </div>
                     <script>
                         function hitungHuruf() {
@@ -132,17 +137,17 @@
                     </script>
 
 
-                    <!-- Submit Button -->
-                    <button type="submit" class="btn btn-primary w-100" name="submit">Kirim</button>
+
+                    <button type="submit" class="btn btn-primary w-100" name="submit">
+                        <i class="bi bi-plus"></i> Tambah Berita
+                    </button>
                 </form>
             </div>
         </div>
     </div>
-
     <!-- Daftar Berita -->
     <div class="container py-5">
         <h3 class="text-center mb-4">Daftar Berita</h3>
-
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -168,16 +173,45 @@
                 ?>
                 <tr>
                     <th scope="row"><?php echo ++$n; ?></th>
-                    <td><img src="g-berita/<?php echo $result['foto']; ?>" alt="gambar" class="img-fluid"></td>
+                    <td><img src="g-berita/<?php echo $result['foto']; ?>" alt="gambar" class="img-thumbnail"></td>
                     <td><?php echo htmlspecialchars($result['judul']); ?></td>
                     <td><?php echo ($result['tanggal']); ?></td>
-                    <td><?php echo nl2br(htmlspecialchars($result['teks'])); ?></td>
                     <td>
+                        <?php
+                        $teks = htmlspecialchars($result['teks']);
+                        if (strlen($teks) > 100) {
+                            echo substr($teks, 0, 100) . '... <a href="#" data-bs-toggle="modal" data-bs-target="#beritaModal' . $result['id'] . '">Baca Selengkapnya</a>';
+                        } else {
+                            echo $teks;
+                        }
+                        ?>
+                    </td>
+                    <td>
+                        <a href="edit-berita.php?id=<?php echo $result['id']; ?>" class="btn btn-warning btn-sm">
+                            <i class="bi bi-pencil"></i> Edit
+                        </a>
                         <a href="proses-berita.php?hapus=<?php echo $result['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus berita ini?')">
                             <i class="bi bi-trash"></i> Hapus
                         </a>
                     </td>
+
                 </tr>
+
+                <!-- Modal untuk menampilkan teks berita selengkapnya -->
+                <div class="modal fade" id="beritaModal<?php echo $result['id']; ?>" tabindex="-1" aria-labelledby="beritaModalLabel<?php echo $result['id']; ?>" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="beritaModalLabel<?php echo $result['id']; ?>">Berita Selengkapnya: <?php echo $result['judul']; ?></h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <?php echo nl2br(htmlspecialchars($result['teks'])); ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <?php
                     }
                 } else {
@@ -186,7 +220,6 @@
                 ?>
             </tbody>
         </table>
-    </div>
 
     <?php include "layout/footer.html"; ?>
 

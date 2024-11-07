@@ -8,6 +8,18 @@
       header("Location: login.php");
       exit();
   }
+   // Ambil nama pengguna dari session
+  $nama_pengguna = $_SESSION['username'];
+
+  // Query untuk mengambil nama dari tabel tb_user berdasarkan username
+  $query_nama = "SELECT nama FROM tb_user WHERE username = '$nama_pengguna'";
+  $result_nama = mysqli_query($konek, $query_nama);
+
+  // Cek apakah query berhasil dan ada data yang dihasilkan
+  if (mysqli_num_rows($result_nama) > 0) {
+      $row_nama = mysqli_fetch_assoc($result_nama);
+      $nama_pengguna = $row_nama['nama']; // Simpan nama pengguna ke dalam variabel
+  }
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -75,11 +87,7 @@
     <?php include "layout/navbar2.html"; ?>
 
     <div class="container my-5">
-      <h2 class="text-center mb-4">Selamat datang, <?php echo $_SESSION['username']; ?>!</h2>
-      <p class="text-center mb-4">Ini adalah halaman kelola yang hanya dapat diakses setelah login.</p>
-      <div class="text-center mb-4">
-        <a href="logout.php" class="btn btn-danger">Logout</a>
-      </div>
+      <?php include 'layout/halo.html';?>
 
       <h1 class="text-center text-primary mb-5">Galeri MTS</h1>
 
@@ -100,6 +108,9 @@
             </form>
           </div>
         </div>
+      </div>
+      <div class="alert alert-info mt-4" role="alert">
+        <strong>Petunjuk:</strong> Pastikan format file adalah JPEG, JPG, atau PNG.
       </div>
 
       <!-- Tabel Gambar -->
@@ -128,7 +139,7 @@
                 ?>
                   <tr>
                     <th scope="row"><?php echo ++$n;?></th>
-                    <td><img src="MTS/<?php echo $result['foto']; ?>" alt="Gambar" class="img-fluid"></td>
+                    <td><img src="MTS/<?php echo $result['foto']; ?>" alt="Gambar" class="img-thumbnail"></td>
                     <td>
                       <a href="proses3.php?hapus=<?php echo $result['id']; ?>" 
                          class="btn btn-danger btn-sm" 
@@ -149,10 +160,6 @@
         </div>
       </div>
 
-      <!-- Info Alert -->
-      <div class="alert alert-info mt-4" role="alert">
-        <strong>Petunjuk:</strong> Pastikan ukuran file tidak lebih dari 2MB dan format file adalah JPEG, JPG, atau PNG.
-      </div>
     </div>
 
     <?php include "layout/footer.html"; ?>
