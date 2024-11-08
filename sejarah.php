@@ -18,7 +18,7 @@
     <title>Yayasan Darul Qur'an - Sejarah</title>
   </head>
 
-  <body style="background-image: url(background.png); overflow-x: hidden">
+  <body style="background-image: url(background1.png)">
     <?php include "layout/navbar.html"; ?>
     <!-- content -->
     <div

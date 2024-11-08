@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/aos.css" />
+    <!-- <link rel="stylesheet" href="css/aos.css" /> -->
     <link rel="shortcut icon" href="logo.png" type="image/x-icon" />
     <style>
         .section {
@@ -17,7 +17,7 @@
     <title>Yayasan Darul Qur'an - Tentang Yayasan</title>
 </head>
 
-<body style="background-image: url(background.png); overflow-x: hidden">
+<body style="background-image: url(background1.png); overflow-x: hidden">
     <?php include "layout/navbar.html"; ?>
 
     <div class="container-fluid section bg-light-custom p-4">

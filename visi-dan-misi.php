@@ -87,7 +87,7 @@
     <title>Yayasan Darul Qur'an - Visi & Misi</title>
   </head>
 
-  <body style="background-image: url(background.png); overflow-x: hidden">
+  <body style="background-image: url(background1.png); overflow-x: hidden">
     <?php include "layout/navbar.html"; ?>
     <div class="custom-section bg-light bg-gradient" data-aos="fade-up" data-aos-duration="1000">
         <h1 class="custom-title">Visi dan Misi Pondok Pesantren Darul Quran</h1>

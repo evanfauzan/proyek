@@ -30,7 +30,7 @@
     <title>Yayasan Darul Qur'an</title>
   </head>
 
-  <body style="background-image: url(background.png)">
+  <body style="background-image: url(background1.png)">
     <?php include "layout/navbar.html"; ?>
     <main class="container my-4 bg-light bg-gradient shadow p-3">
       <div class="text-center">

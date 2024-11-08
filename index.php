@@ -67,7 +67,7 @@
     <title>Yayasan Darul Qur'an</title>
 </head>
 
-<body style="background-image: url(background.png)">
+<body style="background-image: url(background1.png)">
     <?php include "layout/navbar.html"; ?>  
         <!-- Photo Slide -->
     <div

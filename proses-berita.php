@@ -42,23 +42,40 @@ if (isset($_POST['submit'])) {
 // Proses menghapus gambar dari database
 if (isset($_GET['hapus'])) {
     $id = $_GET['hapus'];
+
+    // Tentukan direktori tempat gambar berada
+    $dir = 'g-berita/';  // Direktori tempat gambar berada
+
+    // Ambil nama file gambar berdasarkan id
     $query = "SELECT foto FROM db_berita WHERE id = '$id'";
     $result = mysqli_query($konek, $query);
     $row = mysqli_fetch_assoc($result);
 
+    // Jika data ditemukan
     if ($row) {
-        $fileToDelete = $dir . $row['foto'];
+        $fileToDelete = $dir . $row['foto'];  // Gabungkan path direktori dengan nama file gambar
+
+        // Hapus file gambar dari server jika file ditemukan
         if (file_exists($fileToDelete)) {
-            unlink($fileToDelete);
+            if (unlink($fileToDelete)) {
+                echo "File gambar berhasil dihapus.";
+            } else {
+                echo "Gagal menghapus file gambar.";
+            }
+        } else {
+            echo "File gambar tidak ditemukan.";
         }
 
+        // Hapus data gambar dari database
         $query = "DELETE FROM db_berita WHERE id = '$id';";
         $sql = mysqli_query($konek, $query);
 
+        // Jika penghapusan data dari database berhasil
         if ($sql) {
-            header("Location: tambah-berita.php");
+            header("Location: tambah-berita.php"); // Redirect setelah berhasil dihapus
+            exit(); // Pastikan tidak ada kode lain yang dijalankan setelah redirect
         } else {
-            echo "Gagal menghapus Data dari database.";
+            echo "Gagal menghapus data dari database.";
         }
     } else {
         echo "Data tidak ditemukan.";

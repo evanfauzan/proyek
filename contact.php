@@ -20,11 +20,11 @@
     <title>Yayasan Darul Qur'an - kontak</title>
   </head>
 
-  <body style="background-image: url(background.png)">
+  <body style="background-image: url(background1.png)">
     <?php include "layout/navbar.html"; ?>
     <div
       class="bg-light bg-gradient rounded align-middle shadow"
-      style="max-width: 1000px; margin: auto"
+      style="max-width: 1200px; margin: auto"
       data-aos="fade-up"
       data-aos-duration="1000"
     >

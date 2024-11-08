@@ -191,6 +191,47 @@ if (isset($_POST['submit'])) {
                 </form>
             </div>
         </div>
+        <div class="alert alert-info mt-4" role="alert">
+            <strong>Petunjuk:</strong> <br>
+            Untuk membuat teks <b>bold</b>, gunakan tag &lt;b&gt;&lt;/b&gt;. Contoh: <br>
+            &lt;b&gt;ini adalah teks bold&lt;/b&gt; maka hasilnya adalah <b>ini adalah teks bold</b>. <br><br>
+
+            Untuk membuat teks <i>italic</i>, gunakan tag &lt;i&gt;&lt;/i&gt;. Contoh: <br>
+            &lt;i&gt;ini adalah teks italic&lt;/i&gt; maka hasilnya adalah <i>ini adalah teks italic</i>. <br><br>
+
+            Untuk membuat teks <u>underline</u>, gunakan tag &lt;u&gt;&lt;/u&gt;. Contoh: <br>
+            &lt;u&gt;ini adalah teks underline&lt;/u&gt; maka hasilnya adalah <u>ini adalah teks underline</u>. <br><br>
+
+            Untuk membuat <b>daftar tidak terurut (unordered list)</b>, gunakan tag &lt;ul&gt;&lt;/ul&gt; dengan elemen &lt;li&gt; untuk itemnya. Contoh: <br>
+            &lt;ul&gt;<br>
+            &nbsp;&nbsp;&lt;li&gt;Item pertama&lt;/li&gt;<br>
+            &nbsp;&nbsp;&lt;li&gt;Item kedua&lt;/li&gt;<br>
+            &lt;/ul&gt;<br>
+            Maka hasilnya adalah:
+            <ul>
+                <li>Item pertama</li>
+                <li>Item kedua</li>
+            </ul><br>
+
+            Untuk membuat <b>daftar terurut (ordered list)</b>, gunakan tag &lt;ol&gt;&lt;/ol&gt; dengan elemen &lt;li&gt; untuk itemnya. Contoh: <br>
+            &lt;ol&gt;<br>
+            &nbsp;&nbsp;&lt;li&gt;Langkah pertama&lt;/li&gt;<br>
+            &nbsp;&nbsp;&lt;li&gt;Langkah kedua&lt;/li&gt;<br>
+            &lt;/ol&gt;<br>
+            Maka hasilnya adalah:
+            <ol>
+                <li>Langkah pertama</li>
+                <li>Langkah kedua</li>
+            </ol><br>
+
+            Untuk membuat <b>heading (judul)</b>, gunakan tag &lt;h1&gt;&lt;/h1&gt; hingga &lt;h6&gt;&lt;/h6&gt;. Contoh: <br>
+            &lt;h1&gt;Ini adalah heading level 1&lt;/h1&gt; maka hasilnya adalah <h1>Ini adalah heading level 1</h1>. <br>
+            &lt;h2&gt;Ini adalah heading level 2&lt;/h2&gt; maka hasilnya adalah <h2>Ini adalah heading level 2</h2>. <br>
+            &lt;h3&gt;Ini adalah heading level 3&lt;/h3&gt; maka hasilnya adalah <h3>Ini adalah heading level 3</h3>. <br>
+            &lt;h4&gt;Ini adalah heading level 4&lt;/h4&gt; maka hasilnya adalah <h4>Ini adalah heading level 4</h4>. <br>
+            &lt;h5&gt;Ini adalah heading level 5&lt;/h5&gt; maka hasilnya adalah <h5>Ini adalah heading level 5</h5>. <br>
+            &lt;h6&gt;Ini adalah heading level 6&lt;/h6&gt; maka hasilnya adalah <h6>Ini adalah heading level 6</h6>.
+        </div>
 
         <!-- Tabel Daftar Artikel yang Diupload -->
         <div class="mt-5">
@@ -225,7 +266,11 @@ if (isset($_POST['submit'])) {
                                         <td><img src="artikel/<?php echo $row['foto']; ?>" alt="Foto Artikel" class="img-thumbnail" style="max-width: 100px;"></td>
                                         <td><?php echo $row['judul']; ?></td>
                                         <td><?php echo substr($row['teks1'], 0, 100) . '...'; ?></td>
-                                        <td><?php echo substr($row['teks2'], 0, 100) . '...'; ?> <a href="#" data-bs-toggle="modal" data-bs-target="#artikelModal<?php echo $row['id']; ?>">Lihat Selengkapnya</a></td>
+                                        <td>
+                                            <?php echo nl2br(htmlspecialchars(substr($row['teks2'], 0, 100))) . '...'; ?> 
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#artikelModal<?php echo $row['id']; ?>">Lihat Selengkapnya</a>
+                                        </td>
+
                                         <td>
                                             <!-- Edit Artikel -->
                                             <a href="edit-artikel.php?id=<?php echo $row['id']; ?>" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i> Edit</a>

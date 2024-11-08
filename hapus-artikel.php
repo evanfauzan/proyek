@@ -20,16 +20,29 @@ if (isset($_GET['id'])) {
         $row = mysqli_fetch_assoc($result);
         $foto = $row['foto'];
 
-        // Hapus foto dari folder
-        $foto_path = 'artikel/' . $foto;
-        if (file_exists($foto_path)) {
-            unlink($foto_path); // Hapus file foto
+        // Pastikan foto ada dan tidak kosong
+        if (!empty($foto)) {
+            // Path file gambar yang akan dihapus
+            $foto_path = 'artikel/' . $foto;
+
+            // Hapus foto dari folder jika file tersebut ada
+            if (file_exists($foto_path)) {
+                if (unlink($foto_path)) {
+                    // Foto berhasil dihapus
+                    echo "Foto berhasil dihapus.";
+                } else {
+                    echo "Gagal menghapus foto.";
+                }
+            } else {
+                echo "File foto tidak ditemukan.";
+            }
         }
 
         // Hapus data artikel dari database
         $delete_query = "DELETE FROM tb_artikel WHERE id = '$id'";
         if (mysqli_query($konek, $delete_query)) {
             header("Location: tambah-artikel.php"); // Arahkan kembali setelah berhasil
+            exit(); // Pastikan tidak ada kode lain yang dijalankan setelah redirect
         } else {
             echo "Gagal menghapus artikel: " . mysqli_error($konek);
         }

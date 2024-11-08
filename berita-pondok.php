@@ -29,25 +29,25 @@
     <title>Yayasan Darul Qur'an - Berita</title>
   </head>
 
-  <body style="background-image: url(background.png)">
+  <body style="background-image: url(background1.png)">
     <?php include "layout/navbar.html"; ?>
     <!-- content -->
     <div
       class="container my-5 bg-light bg-gradient shadow"
       data-aos="zoom-out-down"
-      data-aos-duration="1500"
+      data-aos-duration="500"
       data-aos-easing="ease-in-out"
     >
       <h2
         class="text-center mb-4 pt-3"
         data-aos="fade-up"
-        data-aos-duration="1000"
+        data-aos-duration="500"
       >
         Berita Terbaru
       </h2>
       <div
         class="row p-2"
-        data-aos-duration="2000"
+        data-aos-duration="1000"
         data-aos="zoom-in"
         data-aos-easing="ease-in-out"
       >
@@ -64,7 +64,7 @@
             <div
               class="card hover-effect fade-in"
               data-aos="flip-left"
-              data-aos-duration="1000"
+              data-aos-duration="500"
             >
               <img
                 src="g-berita/<?php echo $result['foto']; ?>"

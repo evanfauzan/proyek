@@ -44,7 +44,7 @@
     <title>Yayasan Darul Qur'an</title>
   </head>
 
-  <body style="background-image: url(background.png)">
+  <body style="background-image: url(background1.png)">
     <?php include "layout/navbar.html"; ?>
     <!-- content -->
     <div class="container my-5" data-aos="fade-up" data-aos-duration="1000">

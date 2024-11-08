@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/aos.css" />
     <link rel="shortcut icon" href="logo.png" type="image/x-icon" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <style>
       body {
         background-color: #f8f9fa;
@@ -79,6 +80,43 @@
         background-color: #dc3545 !important;
         transform: scale(1.05);
       }
+
+      #drop-area {
+          background-color: #f9f9f9;
+          border-radius: 5px;
+          border: 2px dashed #007bff;
+          padding: 30px;
+          font-size: 18px;
+          transition: background-color 0.3s ease-in-out;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+      }
+
+      #drop-area.dragover {
+          background-color: #e0f7fa; /* Ganti warna saat drag over */
+      }
+
+      #drop-area p {
+          margin: 0;
+          color: #007bff;
+      }
+
+      #drop-area .bi {
+          margin-bottom: 10px;
+          transition: transform 0.3s ease;
+      }
+
+      #drop-area.dragover .bi {
+          transform: scale(1.1); /* Zoom ikon saat drag over */
+      }
+
+      #drop-area input[type="file"] {
+          display: none; /* Sembunyikan input file asli */
+      }
+
     </style>
     <title>Galeri MTS</title>
   </head>
@@ -98,10 +136,15 @@
             <h3 class="text-center mb-4">Upload Gambar Pondok Pesantren MTS</h3>
             <form action="proses3.php" method="POST" enctype="multipart/form-data">
               <div class="mb-3">
-                <label for="foto" class="form-label fs-4">Pilih Gambar</label>
-                <input type="file" name="foto" id="foto" class="form-control" required />
+                  <label for="foto" class="form-label fs-4">Pilih Gambar</label>
+                  
+                  <!-- Area drag-and-drop -->
+                  <div id="drop-area" class="form-control" style="border: 2px dashed #ccc; padding: 20px; text-align: center; cursor: pointer;">
+                      <i class="bi bi-cloud-upload fs-2" style="color: #007bff;"></i> <!-- Ikon upload -->
+                      <p>Seret dan Lepaskan Gambar Di Sini, atau Klik untuk Memilih File</p>
+                      <input type="file" name="foto[]" id="foto" class="form-control" required multiple style="display: none;" />
+                  </div>
               </div>
-
               <div class="d-grid gap-2">
                 <button type="submit" name="submit" class="btn btn-primary btn-lg btn-upload">Upload</button>
               </div>
@@ -163,6 +206,50 @@
     </div>
 
     <?php include "layout/footer.html"; ?>
-    <script src="js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Mengambil elemen drop-area dan input file
+        const dropArea = document.getElementById("drop-area");
+        const fileInput = document.getElementById("foto");
+
+        // Menambahkan event listener untuk dragover
+        dropArea.addEventListener("dragover", (event) => {
+            event.preventDefault();
+            dropArea.classList.add("dragover");
+        });
+
+        // Menambahkan event listener untuk dragleave
+        dropArea.addEventListener("dragleave", () => {
+            dropArea.classList.remove("dragover");
+        });
+
+        // Menambahkan event listener untuk drop
+        dropArea.addEventListener("drop", (event) => {
+            event.preventDefault();
+            dropArea.classList.remove("dragover");
+
+            // Mendapatkan file yang di-drag dan drop
+            const files = event.dataTransfer.files;
+
+            // Menambahkan file yang di-drop ke input file
+            fileInput.files = files;
+
+            // Menampilkan nama file yang di-drop
+            const fileNames = Array.from(files).map(file => file.name).join(", ");
+            dropArea.querySelector("p").textContent = `${files.length} file dipilih: ${fileNames}`;
+        });
+
+        // Menambahkan event listener untuk klik di area drop
+        dropArea.addEventListener("click", () => {
+            fileInput.click(); // Memicu input file untuk memilih file
+        });
+
+        // Menangani perubahan pada input file (jika memilih file dengan klik)
+        fileInput.addEventListener("change", () => {
+            const files = fileInput.files;
+            const fileNames = Array.from(files).map(file => file.name).join(", ");
+            dropArea.querySelector("p").textContent = `${files.length} file dipilih: ${fileNames}`;
+        });
+    </script>
+
   </body>
 </html>
