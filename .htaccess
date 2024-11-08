@@ -5,3 +5,6 @@ RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^([a-zA-Z0-9_-]+)$ $1.php [L]
+
+php_value upload_max_filesize 200M
+php_value post_max_size 200M
